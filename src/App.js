@@ -17,19 +17,13 @@ class App extends Component {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) =>
-        this.setState(
-          () => {
-            return { monsters: users };
-          },
-          () => {
-            console.log(this.state);
-          }
-        )
+        this.setState(() => {
+          return { monsters: users };
+        })
       );
   }
 
   onSearchChange = (event) => {
-    console.log(event.target.value);
     const searchField = event.target.value.toLowerCase();
 
     this.setState(() => {
@@ -53,14 +47,8 @@ class App extends Component {
           placeholder="search monsters"
           onChange={onSearchChange}
         />
-        {/* {filteredMonsters.map((monster) => {
-          return (
-            <div key={monster.id}>
-              <h1>{monster.name}</h1>
-            </div>
-          );
-        })} */}
-        <Cardlist />
+
+        <Cardlist monsters={filteredMonsters} />
       </div>
     );
   }
